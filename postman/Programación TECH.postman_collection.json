@@ -1,0 +1,486 @@
+{
+	"info": {
+		"_postman_id": "8c525faa-7ece-4c9d-b6e5-85e6eeb6258f",
+		"name": "Programación TECH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25631518"
+	},
+	"item": [
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Vigentes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/categoria.php?funcion=vigentes",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"categoria.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "vigentes"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Marca",
+			"item": [
+				{
+					"name": "Vigentes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/marca.php?funcion=vigentes",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"marca.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "vigentes"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trabajador",
+			"item": [
+				{
+					"name": "Iniciar Sesion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=iniciarsesion&usuario=00000000&clave=123456",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"trabajador.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "iniciarsesion"
+								},
+								{
+									"key": "usuario",
+									"value": "00000000"
+								},
+								{
+									"key": "clave",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=buscar&buscar=",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"trabajador.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "buscar"
+								},
+								{
+									"key": "buscar",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nuevo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=nuevo&dni=75312703&nombres=Nathaly&paterno=Huayama&materno=Hoyos&direccion=Calle Lambayeque 512&celular=987654321&correo=75312703@isatec.net&idrol=3&fecing=2025-04-23",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"trabajador.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "nuevo"
+								},
+								{
+									"key": "dni",
+									"value": "75312703"
+								},
+								{
+									"key": "nombres",
+									"value": "Nathaly"
+								},
+								{
+									"key": "paterno",
+									"value": "Huayama"
+								},
+								{
+									"key": "materno",
+									"value": "Hoyos"
+								},
+								{
+									"key": "direccion",
+									"value": "Calle Lambayeque 512"
+								},
+								{
+									"key": "celular",
+									"value": "987654321"
+								},
+								{
+									"key": "correo",
+									"value": "75312703@isatec.net"
+								},
+								{
+									"key": "idrol",
+									"value": "3"
+								},
+								{
+									"key": "fecing",
+									"value": "2025-04-23"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=modificar&idtrabajador=3&dni=76356178&nombres=Carlos&paterno=Huamán&materno=Fernandez&direccion=Calle Piura 623&celular=936921669&correo=76356178@isatec.net&idrol=3&fecing=2025-04-21",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"trabajador.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "modificar"
+								},
+								{
+									"key": "idtrabajador",
+									"value": "3"
+								},
+								{
+									"key": "dni",
+									"value": "76356178"
+								},
+								{
+									"key": "nombres",
+									"value": "Carlos"
+								},
+								{
+									"key": "paterno",
+									"value": "Huamán"
+								},
+								{
+									"key": "materno",
+									"value": "Fernandez"
+								},
+								{
+									"key": "direccion",
+									"value": "Calle Piura 623"
+								},
+								{
+									"key": "celular",
+									"value": "936921669"
+								},
+								{
+									"key": "correo",
+									"value": "76356178@isatec.net"
+								},
+								{
+									"key": "idrol",
+									"value": "3"
+								},
+								{
+									"key": "fecing",
+									"value": "2025-04-21"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/cliente.php?funcion=buscar&buscar=",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"cliente.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "buscar"
+								},
+								{
+									"key": "buscar",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Id Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/cliente.php?funcion=idbuscar&idcliente=2",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"cliente.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "idbuscar"
+								},
+								{
+									"key": "idcliente",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nuevo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/cliente.php?funcion=nuevo&dni=75712713&nombres=Nathaly&paterno=Huayama&materno=Hoyos&direccion=Av. Los proceres 258&celular=987654321&correo=75712713@isatec.net",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"cliente.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "nuevo"
+								},
+								{
+									"key": "dni",
+									"value": "75712713"
+								},
+								{
+									"key": "nombres",
+									"value": "Nathaly"
+								},
+								{
+									"key": "paterno",
+									"value": "Huayama"
+								},
+								{
+									"key": "materno",
+									"value": "Hoyos"
+								},
+								{
+									"key": "direccion",
+									"value": "Av. Los proceres 258"
+								},
+								{
+									"key": "celular",
+									"value": "987654321"
+								},
+								{
+									"key": "correo",
+									"value": "75712713@isatec.net"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Venta",
+			"item": [
+				{
+					"name": "Nuevo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/venta.php?funcion=nuevo&idtrabajador=1&idcliente=2&doc=20184861217&tipodoc=F&modpag=CO&productos=[{\"IdProducto\": 1, \"Cantidad\": 2}, {\"IdProducto\": 2, \"Cantidad\": 1}]",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"venta.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "nuevo"
+								},
+								{
+									"key": "idtrabajador",
+									"value": "1"
+								},
+								{
+									"key": "idcliente",
+									"value": "2"
+								},
+								{
+									"key": "doc",
+									"value": "20184861217"
+								},
+								{
+									"key": "tipodoc",
+									"value": "F"
+								},
+								{
+									"key": "modpag",
+									"value": "CO"
+								},
+								{
+									"key": "productos",
+									"value": "[{\"IdProducto\": 1, \"Cantidad\": 2}, {\"IdProducto\": 2, \"Cantidad\": 1}]"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/programaciontech_api/v1/services/producto.php?funcion=buscar&buscar=&idcategoria=0&idmarca=0",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"programaciontech_api",
+								"v1",
+								"services",
+								"producto.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "buscar"
+								},
+								{
+									"key": "buscar",
+									"value": ""
+								},
+								{
+									"key": "idcategoria",
+									"value": "0"
+								},
+								{
+									"key": "idmarca",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
