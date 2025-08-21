@@ -15,14 +15,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/categoria.php?funcion=vigentes",
+							"raw": "{{connection}}/categoria.php?funcion=vigentes",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"categoria.php"
 							],
 							"query": [
@@ -46,14 +43,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/marca.php?funcion=vigentes",
+							"raw": "{{connection}}/marca.php?funcion=vigentes",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"marca.php"
 							],
 							"query": [
@@ -77,14 +71,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=iniciarsesion&usuario=00000000&clave=123456",
+							"raw": "{{connection}}/trabajador.php?funcion=iniciarsesion&usuario=00000000&clave=123456",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"trabajador.php"
 							],
 							"query": [
@@ -111,14 +102,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=buscar&buscar=",
+							"raw": "{{connection}}/trabajador.php?funcion=buscar&buscar=",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"trabajador.php"
 							],
 							"query": [
@@ -136,19 +124,43 @@
 					"response": []
 				},
 				{
+					"name": "Id Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{connection}}/trabajador.php?funcion=idbuscar&idtrabajador=2",
+							"host": [
+								"{{connection}}"
+							],
+							"path": [
+								"trabajador.php"
+							],
+							"query": [
+								{
+									"key": "funcion",
+									"value": "idbuscar"
+								},
+								{
+									"key": "idtrabajador",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Nuevo",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=nuevo&dni=75312703&nombres=Nathaly&paterno=Huayama&materno=Hoyos&direccion=Calle Lambayeque 512&celular=987654321&correo=75312703@isatec.net&idrol=3&fecing=2025-04-23",
+							"raw": "{{connection}}/trabajador.php?funcion=nuevo&dni=75312703&nombres=Nathaly&paterno=Huayama&materno=Hoyos&direccion=Calle Lambayeque 512&celular=987654321&correo=75312703@isatec.net&idrol=3&fecing=2025-04-23",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"trabajador.php"
 							],
 							"query": [
@@ -203,14 +215,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/trabajador.php?funcion=modificar&idtrabajador=3&dni=76356178&nombres=Carlos&paterno=Huamán&materno=Fernandez&direccion=Calle Piura 623&celular=936921669&correo=76356178@isatec.net&idrol=3&fecing=2025-04-21",
+							"raw": "{{connection}}/trabajador.php?funcion=modificar&idtrabajador=3&dni=76356178&nombres=Carlos&paterno=Huamán&materno=Fernandez&direccion=Calle Piura 623&celular=936921669&correo=76356178@isatec.net&idrol=3&fecing=2025-04-21",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"trabajador.php"
 							],
 							"query": [
@@ -274,14 +283,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/cliente.php?funcion=buscar&buscar=",
+							"raw": "{{connection}}/cliente.php?funcion=buscar&buscar=",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"cliente.php"
 							],
 							"query": [
@@ -304,14 +310,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/cliente.php?funcion=idbuscar&idcliente=2",
+							"raw": "{{connection}}/cliente.php?funcion=idbuscar&idcliente=2",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"cliente.php"
 							],
 							"query": [
@@ -334,14 +337,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/cliente.php?funcion=nuevo&dni=75712713&nombres=Nathaly&paterno=Huayama&materno=Hoyos&direccion=Av. Los proceres 258&celular=987654321&correo=75712713@isatec.net",
+							"raw": "{{connection}}/cliente.php?funcion=nuevo&dni=75712713&nombres=Nathaly&paterno=Huayama&materno=Hoyos&direccion=Av. Los proceres 258&celular=987654321&correo=75712713@isatec.net",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"cliente.php"
 							],
 							"query": [
@@ -393,14 +393,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/venta.php?funcion=nuevo&idtrabajador=1&idcliente=2&doc=20184861217&tipodoc=F&modpag=CO&productos=[{\"IdProducto\": 1, \"Cantidad\": 2}, {\"IdProducto\": 2, \"Cantidad\": 1}]",
+							"raw": "{{connection}}/venta.php?funcion=nuevo&idtrabajador=1&idcliente=2&doc=20184861217&tipodoc=F&modpag=CO&productos=[{\"IdProducto\": 1, \"Cantidad\": 2}, {\"IdProducto\": 2, \"Cantidad\": 1}]",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"venta.php"
 							],
 							"query": [
@@ -448,14 +445,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/programaciontech_api/v1/services/producto.php?funcion=buscar&buscar=&idcategoria=0&idmarca=0",
+							"raw": "{{connection}}/producto.php?funcion=buscar&buscar=&idcategoria=0&idmarca=0",
 							"host": [
-								"localhost"
+								"{{connection}}"
 							],
 							"path": [
-								"programaciontech_api",
-								"v1",
-								"services",
 								"producto.php"
 							],
 							"query": [

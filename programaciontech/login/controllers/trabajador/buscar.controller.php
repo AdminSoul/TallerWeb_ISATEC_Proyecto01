@@ -27,8 +27,17 @@ if(isset($_SESSION["Login"]) && isset($_POST["buscar"])){
 
             $info .="
                     <div class='gap-2'>
-                        <button type='button' class='btn btn-outline-warning badge' style='color: black;' onclick=MostrarDatos('". base64_encode($trab["IdPersona"]) ."')><i class='bi bi-pencil-square'></i></button>
-                        <button type='button' class='btn btn-outline-danger badge' style='color: black;' onclick=DarBaja('". base64_encode($trab["IdPersona"]) ."')><i class='bi bi-trash'></i></button>
+                        <button type='button' class='btn btn-outline-warning badge' style='color: black;' onclick=MostrarDatos('". base64_encode($trab["IdPersona"]) ."')><i class='bi bi-pencil-square'></i></button>";
+
+        if($trab["Vigencia"] == 1){
+            $info .= "
+                        <button type='button' class='btn btn-outline-danger badge' style='color: black;' onclick=DarBaja('". base64_encode($trab["IdPersona"]) ."')><i class='bi bi-trash'></i></button>";
+        }else{
+            $info .= "
+                        <button type='button' class='btn btn-outline-success badge' style='color: black;' onclick=DarBaja('". base64_encode($trab["IdPersona"]) ."')><i class='bi bi-check-all'></i></button>";
+        }
+
+            $info .= "
                     </div>
                 </li>
             ";

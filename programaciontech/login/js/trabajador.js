@@ -276,7 +276,7 @@ function DarBaja(data) {
                             Swal.fire({
                                 icon: "success",
                                 title: "Registro",
-                                text: "Trabajador dado de baja.",
+                                text: "Se cambió de estado al trabajador.",
                                 allowOutsideClick: false,
                                 allowEscapeKey: false
                             }).then((result) => {

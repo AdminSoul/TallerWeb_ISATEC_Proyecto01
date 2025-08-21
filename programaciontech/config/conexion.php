@@ -7,7 +7,7 @@ class Api {
 
         curl_setopt_array(
             $curl, array(
-                CURLOPT_URL => 'http://localhost/programaciontech_api/v1/services/' . $service,
+                CURLOPT_URL => 'http://localhost/TallerWeb_ISATEC_Proyecto01/programaciontech_api/v1/services/' . $service,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,

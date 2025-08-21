@@ -5,7 +5,6 @@ document.addEventListener(
     }
 );
 
-
 function CategoriasMarcas() {
     $.ajax({
         url: 'controllers/producto/catmar.controller.php',
@@ -102,6 +101,12 @@ function Nuevo() {
                     document.getElementById("datosProducto").innerHTML = resultado.page;
                     Alternador(true);
                     document.getElementById("datosProducto").scrollIntoView({ behavior: "smooth" });
+                } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
+                    });
                 } else {
                     Swal.fire({
                         icon: "error",
