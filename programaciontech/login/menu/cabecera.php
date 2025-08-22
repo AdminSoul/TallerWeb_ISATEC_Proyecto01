@@ -31,9 +31,9 @@ if (!isset($_SESSION["Login"])) {
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="venta.php" class="nav-link text-white">
                                 <i class="bi bi-cart3" style="font-size: xx-large;"></i><br>
-                                Ordenes
+                                Pedido
                             </a>
                         </li>
                         <li>

@@ -101,12 +101,6 @@ function Nuevo() {
                     document.getElementById("datosProducto").innerHTML = resultado.page;
                     Alternador(true);
                     document.getElementById("datosProducto").scrollIntoView({ behavior: "smooth" });
-                } else if (resultado.code == 204) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Advertencia",
-                        text: resultado.message
-                    });
                 } else {
                     Swal.fire({
                         icon: "error",
@@ -174,6 +168,13 @@ function GuardarNew() {
                         Buscar();
                     }
                 });
+
+            } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
+                    });
 
             } else {
                 Swal.fire({
@@ -265,6 +266,13 @@ function GuardarUp(data) {
                             Cancelar();
                             Buscar();
                         }
+                    });
+
+                } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
                     });
 
                 } else {

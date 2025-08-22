@@ -123,9 +123,7 @@ function GuardarNew() {
         $.ajax({
             type: 'POST',
             url: 'controllers/trabajador/registrar.controller.php',
-            data: {
-                d: dni, n: nombres, p: paterno, m: materno, di: direccion, c: celular, co: correo, r: rol, fi: fecing
-            },
+            data: { d: dni, n: nombres, p: paterno, m: materno, di: direccion, c: celular, co: correo, r: rol, fi: fecing },
             dataType: 'json',
             success: function (resultado) {
                 if (resultado.code == 200) {
@@ -139,6 +137,13 @@ function GuardarNew() {
                         if (result.isConfirmed) {
                             Cancelar();
                         }
+                    });
+
+                } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
                     });
 
                 } else {
@@ -229,6 +234,13 @@ function GuardarUp(data) {
                         if (result.isConfirmed) {
                             Cancelar();
                         }
+                    });
+
+                } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
                     });
 
                 } else {

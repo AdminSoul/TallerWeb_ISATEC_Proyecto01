@@ -129,6 +129,13 @@ function GuardarNew() {
                         Cancelar();
                     }
                 });
+
+            } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
+                    });
                 
             } else {
                 Swal.fire({
@@ -216,6 +223,13 @@ function GuardarUp(dato) {
                         Buscar();
                     }
                 });
+
+            } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
+                    });
                 
             } else {
                 Swal.fire({
