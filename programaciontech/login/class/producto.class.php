@@ -6,6 +6,11 @@ class Producto {
 
     const EndPoint = "producto.php";
 
+    public static function IdCategoria($idcategoria){
+        $datos = array("funcion" => "idcategoria", "idcategoria" => $idcategoria);
+        return Api::getDatos(self::EndPoint, $datos);
+    }
+
     public static function Modificar($idproducto, $nombre, $idcategoria, $idmarca, $precio, $stock){
         $datos = array("funcion" => "modificar","idproducto" => $idproducto, "nombre" => $nombre, "idcategoria" => $idcategoria, "idmarca" => $idmarca, "precio" => $precio, "stock" => $stock);
         return Api::getDatos(self::EndPoint, $datos);

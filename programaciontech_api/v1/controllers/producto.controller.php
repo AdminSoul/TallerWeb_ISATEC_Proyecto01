@@ -4,6 +4,35 @@ require_once "../config/conexion.php";
 
 class Producto {
 
+    public static function IdCategoria($idcategoria){
+        try{
+            $devolver = array("status" => "error", "code" => 500, "message" => "Error del servidor.");
+            $con = Conexion::getConexion();
+
+            $sql = "CALL Producto_IdCategoria(:idcategoria)";
+            $stm = $con->prepare($sql);
+            $stm->bindParam(":idcategoria", $idcategoria);
+            $stm->execute();
+            $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+            if(count($resultado) > 0){
+                $devolver = array("status" => "success", "code" => 200, "data" => $resultado);
+            } else {
+                $devolver = array("status" => "success", "code" => 204, "data" => array());
+            }
+
+        } catch(Exception $e) {
+            $devolver = array("status" => "error", "code" => 400, "message" => $e->getMessage());
+
+        } finally{
+            if(isset($con) && $con != null){
+                $con = null;
+            }
+        }
+
+        return $devolver;
+    }
+
     public static function Modificar($idproducto, $nombre, $idcategoria, $idmarca, $precio, $stock){
         try{
             $devolver = array("status" => "error", "code" => 500, "message" => "Error del servidor.");

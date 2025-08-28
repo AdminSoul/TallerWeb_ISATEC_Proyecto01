@@ -9,6 +9,13 @@ $funcion = $_REQUEST["funcion"];
 $resultado = $funcion();
 echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
 
+function idcategoria(){
+    extract($_REQUEST);
+    $rn = new Producto();
+    $datos = $rn->IdCategoria($idcategoria);
+    return $datos;
+}
+
 function modificar(){
     extract($_REQUEST);
     $rn = new Producto();
