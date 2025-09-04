@@ -33,7 +33,7 @@ function idbuscar(){
 function nuevo(){
     extract($_REQUEST);
     $rn = new Producto();
-    $datos = $rn->Nuevo($nombre, $idcategoria, $idmarca, $precio, $stock);
+    $datos = $rn->Nuevo($nombre, $idcategoria, $idmarca, $precio, $stock, $img, $extension);
     return $datos;
 }
 

@@ -2,18 +2,14 @@
 $respuesta = array("code" => 500, "message" => "Error de servidor.");
 session_start();
 
-if(isset($_SESSION["Login"])){
+if(isset($_SESSION["Login"]) && isset($_POST["cat"]) ){
 
-    include_once __DIR__ . "/../../class/categoria.class.php";
     include_once __DIR__ . "/../../class/producto.class.php";
 
-    $categoria = new Categoria();
-    $lstcat = json_decode($categoria->Vigentes(), true);
-
     $producto = new Producto();
-    $lstprod = json_decode($producto->IdCategoria(0), true);
+    $lstprod = json_decode($producto->IdCategoria(base64_decode($_POST["cat"])), true);
 
-    if($lstcat["code"] == 400 || $lstcat["code"] == 500 || $lstprod["code"] == 400 || $lstprod["code"] == 500){
+    if($lstprod["code"] == 400 || $lstprod["code"] == 500){
         
         $page = "
             <div class='d-flex justify-content-center align-items-center' style='height: 100%'>
@@ -25,19 +21,7 @@ if(isset($_SESSION["Login"])){
 
     } else {
 
-        $pagecat = "";
         $pagepro = "";
-
-        if($lstcat["code"] == 200) {
-            foreach($lstcat["data"] as $cat){
-                $pagecat .= "
-                    <li class='list-group-item'>
-                        <input class='form-check-input me-1' name='lstcat' type='radio' id='". base64_encode($cat["IdCategoria"]) ."' onchange='BuscarCat()'>
-                        <label class='form-check-label' for='". base64_encode($cat["IdCategoria"]) ."'>". $cat["Nombre"] ."</label>
-                    </li>
-                ";
-            }
-        }
 
         if($lstprod["code"] == 200) {
             foreach($lstprod["data"] as $pro){
@@ -62,7 +46,7 @@ if(isset($_SESSION["Login"])){
             }
         }
 
-        $respuesta = array("code" => 200, "lstcat" => $pagecat, "lstprod" => $pagepro);
+        $respuesta = array("code" => 200, "lstprod" => $pagepro);
     }
 
 } else {

@@ -97,6 +97,17 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="text-center" style="border: 1px solid black;">
+                            <img src="../source/product/default.jpg" class="img-fluid" style="max-height: 250px;" id="imgProducto">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="file" accept=".jpg, .jpeg, .png" id="UploadImgProducto" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col d-flex justify-content-end">
                         <button type="button" class="btn btn-success" style="margin-right: 5px;" disabled>Guardar</button>
                         <button type="button" class="btn btn-warning" disabled>Cancelar</button>
