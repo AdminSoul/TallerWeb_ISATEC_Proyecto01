@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2025 a las 22:38:51
+-- Tiempo de generación: 05-09-2025 a las 21:09:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -203,6 +203,31 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_IdBuscar` (IN `vIdProducto
 
 END$$
 
+DROP PROCEDURE IF EXISTS `Producto_IdCategoria`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Producto_IdCategoria` (IN `vIdCategoria` INT)   BEGIN
+
+	IF(vIdCategoria = 0) THEN
+    
+    	SELECT P.IdProducto, P.Nombre, P.Precio, P.Stock, C.Nombre AS Categoria, M.Nombre AS Marca
+        	FROM producto P
+            	JOIN categoria C ON P.IdCategoria = C.IdCategoria
+                JOIN marca M ON P.IdMarca = M.IdMarca
+            WHERE P.Vigencia = 1
+            	ORDER BY P.Nombre;         
+    
+    ELSE
+    
+    	SELECT P.IdProducto, P.Nombre, P.Precio, P.Stock, C.Nombre AS Categoria, M.Nombre AS Marca
+        	FROM producto P
+            	JOIN categoria C ON P.IdCategoria = C.IdCategoria
+                JOIN marca M ON P.IdMarca = M.IdMarca
+            WHERE P.IdCategoria = vIdCategoria AND P.Vigencia = 1
+            	ORDER BY P.Nombre;
+    
+    END IF;
+
+END$$
+
 DROP PROCEDURE IF EXISTS `Producto_Modificar`$$
 CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Modificar` (IN `vIdProducto` BIGINT, IN `vNombre` VARCHAR(500), IN `vIdCategoria` INT, IN `vIdMarca` INT, IN `vPrecio` DECIMAL(18,2), IN `vStock` INT)   BEGIN
 
@@ -213,10 +238,10 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Modificar` (IN `vIdProduct
 END$$
 
 DROP PROCEDURE IF EXISTS `Producto_Nuevo`$$
-CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Nuevo` (IN `vNombre` VARCHAR(500), IN `vIdCategoria` INT, IN `vIdMarca` INT, IN `vPrecio` DECIMAL(18,2), IN `vStock` INT)   BEGIN
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Nuevo` (IN `vNombre` VARCHAR(500), IN `vIdCategoria` INT, IN `vIdMarca` INT, IN `vPrecio` DECIMAL(18,2), IN `vStock` INT, IN `vImg` VARCHAR(10))   BEGIN
 
-	INSERT INTO producto(Nombre, IdCategoria, IdMarca, Precio, Stock)
-    	VALUES(vNombre, vIdCategoria, vIdMarca, vPrecio, vStock);
+	INSERT INTO producto(Nombre, IdCategoria, IdMarca, Precio, Stock, Img)
+    	VALUES(vNombre, vIdCategoria, vIdMarca, vPrecio, vStock, vImg);
 
 END$$
 
@@ -588,6 +613,7 @@ CREATE TABLE `producto` (
   `IdMarca` int(11) NOT NULL DEFAULT 0,
   `Precio` decimal(18,2) NOT NULL DEFAULT 0.00,
   `Stock` int(11) NOT NULL DEFAULT 0,
+  `Img` varchar(10) NOT NULL DEFAULT '',
   `Vigencia` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -595,11 +621,13 @@ CREATE TABLE `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`IdProducto`, `Nombre`, `IdCategoria`, `IdMarca`, `Precio`, `Stock`, `Vigencia`) VALUES
-(1, 'Laptop 14 Ploma', 2, 2, 1800.00, 5, 1),
-(2, 'Refrigeradora 280 Lt.', 3, 1, 2800.00, 12, 1),
-(3, 'Galaxy S25 Ultra', 3, 2, 6500.00, 10, 1),
-(4, 'Galxy S24 Ultra', 3, 2, 4500.00, 10, 1);
+INSERT INTO `producto` (`IdProducto`, `Nombre`, `IdCategoria`, `IdMarca`, `Precio`, `Stock`, `Img`, `Vigencia`) VALUES
+(1, 'Laptop 14 Ploma', 2, 2, 1800.00, 5, '', 1),
+(2, 'Refrigeradora 280 Lt.', 3, 1, 2800.00, 12, '', 1),
+(3, 'Galaxy S25 Ultra', 3, 2, 6500.00, 10, '', 1),
+(4, 'Galxy S24 Ultra', 3, 2, 4500.00, 10, '', 1),
+(7, 'Iphone 16 Pro Max', 3, 1, 5890.00, 10, '', 1),
+(8, 'Play Doo Odontólogo', 1, 1, 25.00, 10, '', 1);
 
 -- --------------------------------------------------------
 
@@ -658,7 +686,7 @@ CREATE TABLE `trabajador` (
 
 INSERT INTO `trabajador` (`IdPersona`, `IdRol`, `FechaIngreso`, `Vigencia`, `FechaCreado`, `FechaActualizado`) VALUES
 (1, 1, '2025-04-14', 1, '2025-04-14 19:07:50', '2025-04-14 19:07:50'),
-(2, 2, '2025-08-01', 1, '2025-08-15 09:04:57', '2025-08-15 10:36:22'),
+(2, 2, '2025-08-01', 1, '2025-08-15 09:04:57', '2025-08-21 12:38:47'),
 (3, 3, '2025-04-21', 1, '2025-04-21 15:21:09', '2025-04-23 16:33:54'),
 (4, 3, '2025-04-23', 1, '2025-04-23 16:31:31', '2025-04-23 16:31:31');
 
@@ -846,7 +874,7 @@ ALTER TABLE `persona`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `IdProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IdProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
