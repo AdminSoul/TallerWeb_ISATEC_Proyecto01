@@ -92,12 +92,22 @@ if(isset($_SESSION["Login"]) && isset($_POST["cod"]) ){
 
             <div class='row'>
                 <div class='col-12 col-md-6'>
-                    <div class='text-center' style='border: 1px solid black;'>
-                        <img src='../source/product/default.jpg' class='img-fluid' style='max-height: 250px;' id='imgProducto'>
+                    <div class='text-center' style='border: 1px solid black;'>";
+
+    $img = "../source/product/default.jpg";
+
+    if($rpt["data"]["Img"] <> ""){
+        if(file_exists(__DIR__ . "/../../../source/product/". $rpt["data"]["Img"])){
+            $img = "../source/product/" . $rpt["data"]["Img"];
+        }
+    }
+
+    $msn .= "
+                        <img src='". $img ."' class='img-fluid' style='max-height: 250px;' id='imgProducto'>
                     </div>
                 </div>
                 <div class='col-12 col-md-6'>
-                    <input type='file' accept='.jpg, .jpeg, .png' id='UploadImgProducto'>
+                    <input type='file' accept='.jpg, .jpeg, .png' id='UploadImgProducto' onchange='validaImg()'>
                 </div>
             </div>
 

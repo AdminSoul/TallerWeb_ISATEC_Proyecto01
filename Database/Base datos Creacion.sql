@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-09-2025 a las 21:09:24
+-- Tiempo de generación: 05-09-2025 a las 22:18:09
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -238,7 +238,7 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Modificar` (IN `vIdProduct
 END$$
 
 DROP PROCEDURE IF EXISTS `Producto_Nuevo`$$
-CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Nuevo` (IN `vNombre` VARCHAR(500), IN `vIdCategoria` INT, IN `vIdMarca` INT, IN `vPrecio` DECIMAL(18,2), IN `vStock` INT, IN `vImg` VARCHAR(10))   BEGIN
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Nuevo` (IN `vNombre` VARCHAR(500), IN `vIdCategoria` INT, IN `vIdMarca` INT, IN `vPrecio` DECIMAL(18,2), IN `vStock` INT, IN `vImg` VARCHAR(25))   BEGIN
 
 	INSERT INTO producto(Nombre, IdCategoria, IdMarca, Precio, Stock, Img)
     	VALUES(vNombre, vIdCategoria, vIdMarca, vPrecio, vStock, vImg);
@@ -613,7 +613,7 @@ CREATE TABLE `producto` (
   `IdMarca` int(11) NOT NULL DEFAULT 0,
   `Precio` decimal(18,2) NOT NULL DEFAULT 0.00,
   `Stock` int(11) NOT NULL DEFAULT 0,
-  `Img` varchar(10) NOT NULL DEFAULT '',
+  `Img` varchar(25) NOT NULL,
   `Vigencia` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

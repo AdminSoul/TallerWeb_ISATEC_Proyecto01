@@ -137,61 +137,99 @@ function Cancelar() {
     document.getElementById("cboCategoria2").disabled = true;
     document.getElementById("cboMarca2").selectedIndex = 0;
     document.getElementById("cboMarca2").disabled = true;
+    document.getElementById("imgProducto").src = "../source/product/default.jpg";
 
     Alternador(false);
     document.getElementById("comandos").scrollIntoView({ behavior: "smooth" });
 }
 
+function validaImg() {
+    let img = document.getElementById("UploadImgProducto");
+    let archivo = img.files[0];
+
+    if (archivo) {
+        let extension = archivo.name.split(".").pop().toLowerCase();
+
+        if (extension !== "jpg" && extension !== "jpeg" && extension !== "png") {
+            Swal.fire({
+                icon: "warning",
+                title: "Advertencia",
+                text: "Por favor, seleccina un archivo JPG, JPEG o PNG"
+            });
+            img.value = "";
+
+        } else {
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+                let pit = new Image();
+                pit.onload = function () {
+                    document.getElementById("imgProducto").src = e.target.result;
+                }
+                pit.src = e.target.result;
+            }
+
+            reader.readAsDataURL(archivo);
+        }
+    }
+}
+
 function GuardarNew() {
-    var nombre = document.getElementById("txtNombre").value.trim();
-    var categoria = document.getElementById("cboCategoria2").value;
-    var marca = document.getElementById("cboMarca2").value;
-    var precio = document.getElementById("txtPrecio").value;
-    var stock = document.getElementById("txtStock").value;
+    MiModal.show();
 
-    $.ajax({
-        type: 'POST',
-        url: 'controllers/producto/registrar.controller.php',
-        data: { n: nombre, c: categoria, m: marca, p: precio, s: stock },
-        dataType: 'json',
-        success: function (resultado) {
-            if (resultado.code == 200) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Registro",
-                    text: "Producto registrado con éxito.",
-                    allowOutsideClick: false,
-                    allowEscapeKey: false
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Cancelar();
-                        Buscar();
-                    }
-                });
+    setTimeout(function () {
+        let informacion = new FormData();
+        informacion.append("n", document.getElementById("txtNombre").value.trim());
+        informacion.append("c", document.getElementById("cboCategoria2").value);
+        informacion.append("m", document.getElementById("cboMarca2").value);
+        informacion.append("p", document.getElementById("txtPrecio").value);
+        informacion.append("s", document.getElementById("txtStock").value);
+        informacion.append("i", document.getElementById("UploadImgProducto").files[0] || null);
 
-            } else if (resultado.code == 204) {
+        $.ajax({
+            type: 'POST',
+            url: 'controllers/producto/registrar.controller.php',
+            data: informacion,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function (resultado) {
+                MiModal.hide();
+                if (resultado.code == 200) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registro",
+                        text: "Producto registrado con éxito.",
+                        allowOutsideClick: false,
+                        allowEscapeKey: false
+                    });
+
+                    Cancelar();
+
+                } else if (resultado.code == 204) {
                     Swal.fire({
                         icon: "warning",
                         title: "Advertencia",
                         text: resultado.message
                     });
 
-            } else {
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: resultado.message
+                    });
+                }
+            },
+            error: function () {
                 Swal.fire({
                     icon: "error",
                     title: "Error",
-                    text: resultado.message
+                    text: "Ups! algo salió mal."
                 });
             }
-        },
-        error: function () {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: "Ups! algo salió mal."
-            });
-        }
-    });
+        });
+    }, 600);
 }
 
 function MostrarDatos(dato) {

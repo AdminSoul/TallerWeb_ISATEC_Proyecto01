@@ -86,7 +86,7 @@ if (isset($_SESSION["Login"])) {
                     </div>
                 </div>
                 <div class='col-12 col-md-6'>
-                    <input type='file' accept='.jpg, .jpeg, .png' id='UploadImgProducto'>
+                    <input type='file' accept='.jpg, .jpeg, .png' id='UploadImgProducto' onchange='validaImg()'>
                 </div>
             </div>
 
