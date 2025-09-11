@@ -280,16 +280,21 @@ function GuardarUp(data) {
     MiModal.show();
 
     setTimeout(function () {
-        var nombre = document.getElementById("txtNombre").value.trim();
-        var categoria = document.getElementById("cboCategoria2").value;
-        var marca = document.getElementById("cboMarca2").value;
-        var precio = document.getElementById("txtPrecio").value;
-        var stock = document.getElementById("txtStock").value;
+        let informacion = new FormData();
+        informacion.append("data", data);
+        informacion.append("n", document.getElementById("txtNombre").value.trim());
+        informacion.append("c", document.getElementById("cboCategoria2").value);
+        informacion.append("m", document.getElementById("cboMarca2").value);
+        informacion.append("p", document.getElementById("txtPrecio").value);
+        informacion.append("s", document.getElementById("txtStock").value);
+        informacion.append("i", document.getElementById("UploadImgProducto").files[0] || null);
 
         $.ajax({
             type: 'POST',
             url: 'controllers/producto/modificar.controller.php',
-            data: { data: data, n: nombre, c: categoria, m: marca, p: precio, s: stock },
+            data: informacion,
+            processData: false,
+            contentType: false,
             dataType: 'json',
             success: function (resultado) {
                 if (resultado.code == 200) {
@@ -299,12 +304,10 @@ function GuardarUp(data) {
                         text: "Producto actualizado con éxito.",
                         allowOutsideClick: false,
                         allowEscapeKey: false
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Cancelar();
-                            Buscar();
-                        }
                     });
+
+                    Cancelar();
+                    Buscar();
 
                 } else if (resultado.code == 204) {
                     Swal.fire({

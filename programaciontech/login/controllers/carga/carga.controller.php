@@ -41,10 +41,18 @@ if(isset($_SESSION["Login"])){
 
         if($lstprod["code"] == 200) {
             foreach($lstprod["data"] as $pro){
+                $img = "../source/product/default.jpg";
+
+                if($pro["Img"] <> ""){
+                    if(file_exists(__DIR__ . "/../../../source/product/". $pro["Img"])){
+                        $img = "../source/product/" . $pro["Img"];
+                    }
+                }
+
                 $pagepro .= "
                     <div class='col'>
                         <div class='card h-100'>
-                            <img src='../source/product/default.jpg' class='card-img-top' alt='...'>
+                            <img src='". $img ."' class='card-img-top' alt='...'>
                             <div class='card-body'>
                                 <h5 class='card-title'>
                                     ". $pro["Nombre"] ."

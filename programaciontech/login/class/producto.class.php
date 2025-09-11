@@ -11,8 +11,8 @@ class Producto {
         return Api::getDatos(self::EndPoint, $datos);
     }
 
-    public static function Modificar($idproducto, $nombre, $idcategoria, $idmarca, $precio, $stock){
-        $datos = array("funcion" => "modificar","idproducto" => $idproducto, "nombre" => $nombre, "idcategoria" => $idcategoria, "idmarca" => $idmarca, "precio" => $precio, "stock" => $stock);
+    public static function Modificar($idproducto, $nombre, $idcategoria, $idmarca, $precio, $stock, $img, $extension){
+        $datos = array("funcion" => "modificar","idproducto" => $idproducto, "nombre" => $nombre, "idcategoria" => $idcategoria, "idmarca" => $idmarca, "precio" => $precio, "stock" => $stock, "img" => $img, "extension" => $extension);
         return Api::getDatos(self::EndPoint, $datos);
     }
 

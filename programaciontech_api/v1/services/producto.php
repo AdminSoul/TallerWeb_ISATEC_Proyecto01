@@ -19,7 +19,7 @@ function idcategoria(){
 function modificar(){
     extract($_REQUEST);
     $rn = new Producto();
-    $datos = $rn->Modificar($idproducto, $nombre, $idcategoria, $idmarca, $precio, $stock);
+    $datos = $rn->Modificar($idproducto, $nombre, $idcategoria, $idmarca, $precio, $stock, $img, $extension);
     return $datos;
 }
 

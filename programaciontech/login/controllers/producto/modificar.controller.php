@@ -13,8 +13,18 @@ if (isset($_SESSION["Login"]) && isset($_POST["data"]) && isset($_POST["n"]) && 
     } elseif ($_POST["p"] == 0.00) {
         $respuesta = array("code" => 204, "message" => "Debe ingresar un precio correctamente");
     } else {
+
+        $img = "";
+        $extension = "";
+
+        if(isset($_FILES["i"]) && $_FILES["i"]["error"] == 0){
+            $img = base64_encode(file_get_contents($_FILES["i"]["tmp_name"]));
+            $extension = pathinfo($_FILES["i"]["name"], PATHINFO_EXTENSION);
+        }
+
         include_once __DIR__ . "/../../class/producto.class.php";
         $producto = new Producto();
+
         $lst = json_decode(
             $producto->Modificar(
                 base64_decode($_POST["data"]),
@@ -22,7 +32,9 @@ if (isset($_SESSION["Login"]) && isset($_POST["data"]) && isset($_POST["n"]) && 
                 base64_decode($_POST["c"]),
                 base64_decode($_POST["m"]),
                 $_POST["p"],
-                $_POST["s"]
+                $_POST["s"],
+                $img,
+                $extension
             ),
             true
         );
