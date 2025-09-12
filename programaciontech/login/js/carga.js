@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             error: function () {
                 MiModal.hide();
-                
+
                 Swal.fire({
                     icon: "error",
                     title: "Error",
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 600);
 });
 
-function BuscarCat(){
+function BuscarCat() {
     MiModal.show();
 
     setTimeout(function () {
@@ -50,7 +50,7 @@ function BuscarCat(){
             },
             error: function () {
                 MiModal.hide();
-                
+
                 Swal.fire({
                     icon: "error",
                     title: "Error",
@@ -60,7 +60,61 @@ function BuscarCat(){
         });
 
     }, 600);
+}
 
-    
-    
+function Agregar(element) {
+    MiModal.show();
+
+    setTimeout(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'controllers/pedido/addproduct.controller.php',
+            data: { element: element, cantidad: document.getElementById(element).value },
+            dataType: 'json',
+            success: function (resultado) {
+                MiModal.hide();
+
+                if (resultado.code == 200) {
+                    Swal.fire({
+                        icon: "success",
+                        text: 'Producto agregado al carrito con éxito.',
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        timer: 2000
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            document.getElementById("cantpedidos").innerText = resultado.cantidad;
+                            document.getElementById("cantpedidos").hidden = false;
+                            document.getElementById(element).value = 1;
+                        }
+                    });
+
+                } else if (resultado.code == 204) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
+                    });
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Ups! algo salió mal."
+                    });
+                }
+            },
+            error: function () {
+                MiModal.hide();
+
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Ups! algo salió mal."
+                });
+            }
+        });
+
+    }, 600);
 }

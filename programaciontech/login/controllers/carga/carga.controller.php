@@ -52,7 +52,7 @@ if(isset($_SESSION["Login"])){
                 $pagepro .= "
                     <div class='col'>
                         <div class='card h-100'>
-                            <img src='". $img ."' class='card-img-top' alt='...'>
+                            <img src='". $img ."' class='card-img-top' alt='...' height='255px'>
                             <div class='card-body'>
                                 <h5 class='card-title'>
                                     ". $pro["Nombre"] ."
@@ -62,7 +62,10 @@ if(isset($_SESSION["Login"])){
                                     <span class='fw-bold'>Marca: </span><span>". $pro["Marca"] ."</span><br>
                                     <span class='fw-bold'>Precio: </span><span>S/. ". number_format($pro["Precio"], 2, ".", ",") ."</span>
                                 </p>
-                                <button class='btn btn-primary col-6'><i class='bi bi-cart-plus'></i></button>
+                                <div class='d-flex gap-2'>
+                                    <button class='btn btn-primary col-6' onclick=Agregar('". base64_encode($pro["IdProducto"]) ."')><i class='bi bi-cart-plus'></i></button>
+                                    <input type='number' class='form-control' id='". base64_encode($pro["IdProducto"]) ."' placeholder='1' min='1' value='1' max='". $pro["Stock"] ."'>
+                                </div>
                             </div>
                         </div>
                     </div>

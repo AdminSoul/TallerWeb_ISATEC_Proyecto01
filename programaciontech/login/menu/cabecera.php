@@ -31,9 +31,10 @@ if (!isset($_SESSION["Login"])) {
                             </a>
                         </li>
                         <li>
-                            <a href="venta.php" class="nav-link text-white">
+                            <a type="button" class="nav-link text-white position-relative" href="venta.php">
                                 <i class="bi bi-cart3" style="font-size: xx-large;"></i><br>
                                 Pedido
+                                <span id="cantpedidos" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-3" hidden>0</span>
                             </a>
                         </li>
                         <li>
