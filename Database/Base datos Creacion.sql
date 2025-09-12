@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-09-2025 a las 22:18:09
+-- Tiempo de generación: 12-09-2025 a las 17:43:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -208,7 +208,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Producto_IdCategoria` (IN `vIdCateg
 
 	IF(vIdCategoria = 0) THEN
     
-    	SELECT P.IdProducto, P.Nombre, P.Precio, P.Stock, C.Nombre AS Categoria, M.Nombre AS Marca
+    	SELECT P.IdProducto, P.Nombre, P.Precio, P.Stock, C.Nombre AS Categoria, M.Nombre AS Marca, P.Img
         	FROM producto P
             	JOIN categoria C ON P.IdCategoria = C.IdCategoria
                 JOIN marca M ON P.IdMarca = M.IdMarca
@@ -217,7 +217,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Producto_IdCategoria` (IN `vIdCateg
     
     ELSE
     
-    	SELECT P.IdProducto, P.Nombre, P.Precio, P.Stock, C.Nombre AS Categoria, M.Nombre AS Marca
+    	SELECT P.IdProducto, P.Nombre, P.Precio, P.Stock, C.Nombre AS Categoria, M.Nombre AS Marca, P.Img
         	FROM producto P
             	JOIN categoria C ON P.IdCategoria = C.IdCategoria
                 JOIN marca M ON P.IdMarca = M.IdMarca
@@ -229,10 +229,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `Producto_IdCategoria` (IN `vIdCateg
 END$$
 
 DROP PROCEDURE IF EXISTS `Producto_Modificar`$$
-CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Modificar` (IN `vIdProducto` BIGINT, IN `vNombre` VARCHAR(500), IN `vIdCategoria` INT, IN `vIdMarca` INT, IN `vPrecio` DECIMAL(18,2), IN `vStock` INT)   BEGIN
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Producto_Modificar` (IN `vIdProducto` BIGINT, IN `vNombre` VARCHAR(500), IN `vIdCategoria` INT, IN `vIdMarca` INT, IN `vPrecio` DECIMAL(18,2), IN `vStock` INT, IN `vImg` VARCHAR(25))   BEGIN
 
 	UPDATE producto
-    	SET Nombre = vNombre, IdCategoria = vIdCategoria, IdMarca = vIdMarca, Precio = vPrecio, Stock = vStock
+    	SET Nombre = vNombre, IdCategoria = vIdCategoria, IdMarca = vIdMarca, Precio = vPrecio, Stock = vStock, Img = vImg
     WHERE IdProducto = vIdProducto;
 
 END$$
@@ -624,10 +624,11 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`IdProducto`, `Nombre`, `IdCategoria`, `IdMarca`, `Precio`, `Stock`, `Img`, `Vigencia`) VALUES
 (1, 'Laptop 14 Ploma', 2, 2, 1800.00, 5, '', 1),
 (2, 'Refrigeradora 280 Lt.', 3, 1, 2800.00, 12, '', 1),
-(3, 'Galaxy S25 Ultra', 3, 2, 6500.00, 10, '', 1),
+(3, 'Galaxy S25 Ultra', 3, 2, 6500.00, 10, '1757631256.jpg', 1),
 (4, 'Galxy S24 Ultra', 3, 2, 4500.00, 10, '', 1),
 (7, 'Iphone 16 Pro Max', 3, 1, 5890.00, 10, '', 1),
-(8, 'Play Doo Odontólogo', 1, 1, 25.00, 10, '', 1);
+(8, 'Play Doo Odontólogo', 1, 1, 25.00, 10, '', 1),
+(9, 'iPhone 17 Prox max', 3, 1, 6300.00, 15, '1757629511.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -874,7 +875,7 @@ ALTER TABLE `persona`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `IdProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
