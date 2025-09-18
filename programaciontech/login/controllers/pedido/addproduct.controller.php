@@ -14,7 +14,7 @@ if(isset($_SESSION["Login"]) && isset($_POST["element"]) && isset($_POST["cantid
     foreach($_SESSION["Carrito"] as &$item){
         if($item["Codigo"] == base64_decode($_POST["element"])){
             $encontrado = true;
-            $item["CantCompra"] += $_POST["cantidad"];
+            $item["CantCompra"] = intval($item["CantCompra"]) + intval($_POST["cantidad"]);
             break;
         }
     }

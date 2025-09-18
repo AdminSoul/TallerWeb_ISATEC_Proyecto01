@@ -34,7 +34,17 @@ if (!isset($_SESSION["Login"])) {
                             <a type="button" class="nav-link text-white position-relative" href="venta.php">
                                 <i class="bi bi-cart3" style="font-size: xx-large;"></i><br>
                                 Pedido
+                        <?php
+                            if(isset($_SESSION["Carrito"]) && count($_SESSION["Carrito"]) > 0) {
+                        ?>
+                                <span id="cantpedidos" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-3"><?php echo count($_SESSION["Carrito"]); ?></span>
+                        <?php
+                            } else {
+                        ?>
                                 <span id="cantpedidos" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger mt-3" hidden>0</span>
+                        <?php
+                            }
+                        ?>
                             </a>
                         </li>
                         <li>
