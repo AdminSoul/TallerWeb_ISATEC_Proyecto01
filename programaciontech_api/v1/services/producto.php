@@ -9,6 +9,13 @@ $funcion = $_REQUEST["funcion"];
 $resultado = $funcion();
 echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
 
+function validacarrito(){
+    extract($_REQUEST);
+    $rn = new Producto();
+    $datos = $rn->ValidaCarrito($idproducto);
+    return $datos;
+}
+
 function idcategoria(){
     extract($_REQUEST);
     $rn = new Producto();

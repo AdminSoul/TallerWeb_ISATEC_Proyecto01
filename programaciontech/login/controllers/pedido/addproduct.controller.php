@@ -2,7 +2,7 @@
 $respuesta = array("code" => 500, "message" => "Error de servidor.");
 session_start();
 
-if(isset($_SESSION["Login"]) && isset($_POST["element"]) && isset($_POST["cantidad"]) ){
+if(isset($_SESSION["Login"]) && isset($_POST["element"]) && isset($_POST["cantidad"])){
 
     if(!isset($_SESSION["Carrito"])){
         $_SESSION["Carrito"] = array();

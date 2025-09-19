@@ -10,10 +10,10 @@
 <body>
     <?php include_once __DIR__ . "/menu/cabecera.php"; ?>
 
-    <div class="container mt-4" id="comandos">
+    <div class="container mt-4">
         <h3 class="fw-bold">Carrito de Venta</h3>
 
-        <div class="row mt-3">
+        <div class="row mt-3" id="pnlContenedor">
             <div class="col-12 col-lg-8">
 
                 <div class="card mb-3">
@@ -30,7 +30,7 @@
                             </p>
                             <div class='d-flex gap-2'>
                                 <input type='text' class='form-control' id='1' placeholder='1' value='1' style="max-width: 60px;" readonly>
-                                <button class='btn btn-danger col-6' style="max-width: 60px;"><i class='bi bi-trash'></i></button>
+                                <button class='btn btn-danger col-6' style="max-width: 60px;" onclick="Remove('abc')"><i class='bi bi-trash'></i></button>
                             </div>
                         </div>
                         </div>
