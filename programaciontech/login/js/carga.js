@@ -37,7 +37,7 @@ function BuscarCat() {
         $.ajax({
             type: 'POST',
             url: 'controllers/carga/buscarproductos.controller.php',
-            data: { cat: chk.id },
+            data: { cat: chk.getAttribute("data-id") },
             dataType: 'json',
             success: function (resultado) {
                 MiModal.hide();
@@ -62,14 +62,14 @@ function BuscarCat() {
     }, 600);
 }
 
-function Agregar(element) {
+function Agregar(element, id) {
     MiModal.show();
 
     setTimeout(function () {
         $.ajax({
             type: 'POST',
             url: 'controllers/pedido/addproduct.controller.php',
-            data: { element: element, cantidad: document.getElementById(element).value },
+            data: { element: element, cantidad: document.getElementById(id).value },
             dataType: 'json',
             success: function (resultado) {
                 MiModal.hide();
@@ -86,7 +86,7 @@ function Agregar(element) {
                         if (result.dismiss === Swal.DismissReason.timer) {
                             document.getElementById("cantpedidos").innerText = resultado.cantidad;
                             document.getElementById("cantpedidos").hidden = false;
-                            document.getElementById(element).value = 1;
+                            document.getElementById(id).value = 1;
                         }
                     });
 

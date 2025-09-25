@@ -32,7 +32,7 @@ if(isset($_SESSION["Login"])){
             foreach($lstcat["data"] as $cat){
                 $pagecat .= "
                     <li class='list-group-item'>
-                        <input class='form-check-input me-1' name='lstcat' type='radio' id='". base64_encode($cat["IdCategoria"]) ."' onchange='BuscarCat()'>
+                        <input class='form-check-input me-1' name='lstcat' type='radio' data-id='". base64_encode($cat["IdCategoria"]) ."' onchange='BuscarCat()'>
                         <label class='form-check-label' for='". base64_encode($cat["IdCategoria"]) ."'>". $cat["Nombre"] ."</label>
                     </li>
                 ";
@@ -63,7 +63,7 @@ if(isset($_SESSION["Login"])){
                                     <span class='fw-bold'>Precio: </span><span>S/. ". number_format($pro["Precio"], 2, ".", ",") ."</span>
                                 </p>
                                 <div class='d-flex gap-2'>
-                                    <button class='btn btn-primary col-6' onclick=Agregar('". base64_encode($pro["IdProducto"]) ."')><i class='bi bi-cart-plus'></i></button>
+                                    <button class='btn btn-primary col-6' onclick=\"Agregar('". base64_encode(json_encode($pro)) ."', '". base64_encode($pro["IdProducto"]) ."')\"><i class='bi bi-cart-plus'></i></button>
                                     <input type='number' class='form-control' id='". base64_encode($pro["IdProducto"]) ."' placeholder='1' min='1' value='1' max='". $pro["Stock"] ."'>
                                 </div>
                             </div>

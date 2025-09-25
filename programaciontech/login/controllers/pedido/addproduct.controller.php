@@ -8,11 +8,13 @@ if(isset($_SESSION["Login"]) && isset($_POST["element"]) && isset($_POST["cantid
         $_SESSION["Carrito"] = array();
     }
 
+    $prod = json_decode(base64_decode($_POST["element"]), true);
+
     $encontrado = false;
     $respuesta = array("code" => 204, "message" => "No se pudo agregar el producto, vuelva a intentarlo.");
 
     foreach($_SESSION["Carrito"] as &$item){
-        if($item["Codigo"] == base64_decode($_POST["element"])){
+        if($item["IdProducto"] == $prod["IdProducto"]){
             $encontrado = true;
             $item["CantCompra"] = intval($item["CantCompra"]) + intval($_POST["cantidad"]);
             break;
@@ -23,7 +25,13 @@ if(isset($_SESSION["Login"]) && isset($_POST["element"]) && isset($_POST["cantid
         array_push(
             $_SESSION["Carrito"],
             array(
-                "Codigo" => base64_decode($_POST["element"]),
+                "IdProducto" => $prod["IdProducto"],
+                "Nombre" => $prod["Nombre"],
+                "Precio" => $prod["Precio"],
+                "Stock" => $prod["Stock"],
+                "Categoria" => $prod["Categoria"],
+                "Marca" => $prod["Marca"],
+                "Img" => $prod["Img"],
                 "CantCompra" => $_POST["cantidad"]
             )
         );

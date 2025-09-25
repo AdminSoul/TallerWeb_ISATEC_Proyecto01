@@ -48,7 +48,7 @@ if(isset($_SESSION["Login"]) && isset($_POST["cat"]) ){
                                     <span class='fw-bold'>Precio: </span><span>S/. ". number_format($pro["Precio"], 2, ".", ",") ."</span>
                                 </p>
                                 <div class='d-flex gap-2'>
-                                    <button class='btn btn-primary col-6' onclick=Agregar('". base64_encode($pro["IdProducto"]) ."')><i class='bi bi-cart-plus'></i></button>
+                                    <button class='btn btn-primary col-6' onclick=\"Agregar('". base64_encode(json_encode($pro)) ."', '". base64_encode($pro["IdProducto"]) ."')\"><i class='bi bi-cart-plus'></i></button>
                                     <input type='number' class='form-control' id='". base64_encode($pro["IdProducto"]) ."' placeholder='1' min='1' value='1' max='". $pro["Stock"] ."'>
                                 </div>
                             </div>
