@@ -17,7 +17,12 @@ if (isset($_SESSION["Login"])) {
             <div class='col-12 col-lg-8'>
         ";
 
+        $totalArticulos = 0;
+        $totalCompra = 0;
+
         foreach($_SESSION["Carrito"] as $car){
+            $totalArticulos += $car["CantCompra"];
+            $totalCompra += ($car["Precio"] * $car["CantCompra"]);
             $img = "../source/product/default.jpg";
 
             if($car["Img"] <> "" && file_exists(__DIR__ . "/../../../source/product/". $car["Img"])){
@@ -27,12 +32,12 @@ if (isset($_SESSION["Login"])) {
             $page .="
                 <div class='card mb-3'>
                     <div class='row g-0'>
-                        <div class='col-md-4'>
+                        <div class='col-md-4 text-center'>
                             <img src='". $img ."' class='img-fluid rounded-start' alt='...' height='255px'>
                         </div>
-                        <div class='col-md-8'>
+                        <div class='col-md-8 text-center text-md-start'>
                             <div class='card-body'>
-                                 <h5 class='card-title'>
+                                <h5 class='card-title'>
                                     ". $car["Nombre"] ."
                                 </h5>
                                 <p class='card-text'>
@@ -56,7 +61,30 @@ if (isset($_SESSION["Login"])) {
             <div class='col-12 col-lg-4'>
         ";
 
-            $page .= "<p>holaaaaaaaaaaa</p>";
+        $page .= "
+            <h5 class='fw-bold'>Resumen del pedido</h5>
+            <div class='row mt-3'>
+                <div class='col-6 text-start'>
+                    <span>Total de artículos</span>
+                </div>
+                <div class='col-6 text-end'>
+                    <span>". $totalArticulos ."</span>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col-6 text-start'>
+                    <span>Total de compra</span>
+                </div>
+                <div class='col-6 text-end'>
+                    <span>S/. ". number_format($totalCompra, 2, ".", ",") ."</span>
+                </div>
+            </div>
+            
+            <div class='row mt-3'>
+                <button type='button' class='btn btn-success' onclick='RealizarPedido()'>Hacer pedido</button>
+            </div>
+        ";
 
         $page .= "
             </div>
