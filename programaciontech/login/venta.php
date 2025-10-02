@@ -29,10 +29,10 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="btn-group w-100 mb-3" role="group" aria-label="radios">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnBoleta" autocomplete="off" checked>
+                        <input type="radio" class="btn-check" name="btnradio" id="btnBoleta" value="B" autocomplete="off" checked>
                         <label class="btn btn-outline-info" for="btnBoleta">Boleta</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnFactura" autocomplete="off" >
+                        <input type="radio" class="btn-check" name="btnradio" id="btnFactura" value="F" autocomplete="off" >
                         <label class="btn btn-outline-info" for="btnFactura">Factura</label>
                     </div>
 
@@ -49,6 +49,7 @@
                             <input type="text" class="form-control" id="txtDireccion" value="" readonly>
                             <label for="txtDireccion">Dirección</label>
                         </div>
+                        <button type="button" class="btn btn-outline-success w-100">Pagar S/. <?php echo "0.00"; ?></button>
                     </div>
                 </div>
             </div>

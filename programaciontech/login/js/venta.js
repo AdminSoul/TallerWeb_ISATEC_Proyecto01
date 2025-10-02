@@ -31,6 +31,64 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 600);
 });
 
+document.getElementById("btnBoleta").addEventListener("click", function () {
+    $.ajax({
+        url: 'controllers/pedido/boleta.controller.php',
+        dataType: 'json',
+        success: function (resultado) {
+            MiModal.hide();
+
+            if (resultado.code == 200) {
+                document.getElementById("datosComprobante").innerHTML = resultado.page;
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: resultado.message
+                });
+            }
+        },
+        error: function () {
+            MiModal.hide();
+
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Ups! algo salió mal."
+            });
+        }
+    });
+});
+
+document.getElementById("btnFactura").addEventListener("click", function () {
+    $.ajax({
+        url: 'controllers/pedido/factura.controller.php',
+        dataType: 'json',
+        success: function (resultado) {
+            MiModal.hide();
+
+            if (resultado.code == 200) {
+                document.getElementById("datosComprobante").innerHTML = resultado.page;
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: resultado.message
+                });
+            }
+        },
+        error: function () {
+            MiModal.hide();
+
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Ups! algo salió mal."
+            });
+        }
+    });
+});
+
 function Remove(element) {
     MiModal.show();
 
@@ -77,6 +135,14 @@ function Remove(element) {
     }, 600);
 }
 
-function RealizarPedido(){
+function RealizarPedido() {
+    document.getElementById("btnBoleta").click();
     $('#ModalVenta').modal('show');
+}
+
+function Pagar() {
+    let tipo = document.querySelector('input[name="btnradio"]:checked').value;
+    let doc = document.getElementById("txtNDoc").value.trim();
+    let cli = document.getElementById("txtCliente").value.trim();
+    let dir = document.getElementById("txtDireccion").value.trim();
 }
