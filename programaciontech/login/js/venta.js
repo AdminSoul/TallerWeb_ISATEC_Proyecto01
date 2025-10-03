@@ -141,8 +141,63 @@ function RealizarPedido() {
 }
 
 function Pagar() {
-    let tipo = document.querySelector('input[name="btnradio"]:checked').value;
-    let doc = document.getElementById("txtNDoc").value.trim();
-    let cli = document.getElementById("txtCliente").value.trim();
-    let dir = document.getElementById("txtDireccion").value.trim();
+    MiModal.show();
+    $('#ModalVenta').modal('hide');
+
+    setTimeout(() => {
+        let tipo = document.querySelector('input[name="btnradio"]:checked').value;
+        let doc = document.getElementById("txtNDoc").value.trim();
+        let cli = document.getElementById("txtCliente").value.trim();
+        let dir = document.getElementById("txtDireccion").value.trim();
+
+        $.ajax({
+            type: 'POST',
+            url: 'controllers/pedido/venta.controller.php',
+            data: { tipo: tipo, doc: doc, cli: cli, dir: dir },
+            dataType: 'json',
+            success: function (resultado) {
+                MiModal.hide();
+
+                if (resultado.code == 200) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registro exitoso.",
+                        showConfirmButton: false,
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        timer: 2000
+                    }).then((result) => {
+                        if(result.dismiss === Swal.DismissReason.timer){
+                            location.reload();
+                        }
+                    });
+
+                } else if (resultado.code == 204) {
+                    $('#ModalVenta').modal('show');
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Advertencia",
+                        text: resultado.message
+                    });
+                } else {
+                    $('#ModalVenta').modal('show');
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: resultado.message
+                    });
+                }
+
+            },
+            error: function () {
+                MiModal.hide();
+                $('#ModalVenta').modal('show');
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Ups! algo salió mal."
+                });
+            }
+        });
+    }, 600);
 }

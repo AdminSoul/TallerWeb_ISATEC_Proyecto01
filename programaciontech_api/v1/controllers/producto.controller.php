@@ -66,6 +66,8 @@ class Producto {
         try{
             $devolver = array("status" => "error", "code" => 500, "message" => "Error del servidor.");
 
+            $idimg = "";
+            
             if($img <> ""){
                 $idimg = time() . "." . $extension;
             }

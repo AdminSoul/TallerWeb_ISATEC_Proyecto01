@@ -31,7 +31,7 @@ class Venta {
                     $stm = $con->prepare($sql);
                     $stm->bindParam(":idventa", $resultado[0]["IdVenta"]);
                     $stm->bindParam(":idproducto", $pro["IdProducto"]);
-                    $stm->bindParam(":cantidad", $pro["Cantidad"]);
+                    $stm->bindParam(":cantidad", $pro["CantCompra"]);
                     $stm->execute();
                     $stm->closeCursor();
                 }
