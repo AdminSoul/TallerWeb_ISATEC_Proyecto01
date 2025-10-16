@@ -9,6 +9,13 @@ $funcion = $_REQUEST["funcion"];
 $resultado = $funcion();
 echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
 
+function iniciarsesion(){
+    extract($_REQUEST);
+    $rn = new Cliente();
+    $datos = $rn->IniciarSesion($usuario, $clave);
+    return $datos;
+}
+
 function modificar(){
     extract($_REQUEST);
     $rn = new Cliente();

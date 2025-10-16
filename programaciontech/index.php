@@ -11,8 +11,6 @@
     <?php 
         include_once __DIR__ . "/menu/cabecera.php";
     ?>
-
-    <a href="pedidos.php" >dale clic</a>
 </body>
 
 </html>

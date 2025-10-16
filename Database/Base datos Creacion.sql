@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2025 a las 22:21:16
+-- Tiempo de generación: 17-10-2025 a las 01:03:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -71,6 +71,16 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Cliente_IdBuscar` (IN `vIdCliente` 
     	FROM persona P
         	JOIN cliente C ON P.IdPersona = C.IdCliente
         WHERE C.IdCliente = vIdCliente;
+
+END$$
+
+DROP PROCEDURE IF EXISTS `Cliente_IniciarSesion`$$
+CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Cliente_IniciarSesion` (IN `vDNI` CHAR(8), IN `vClave` VARCHAR(20))   BEGIN
+
+	SELECT P.IdPersona, P.DNI, P.Persona
+        FROM persona P
+            JOIN cliente C ON P.IdPersona = C.IdCliente
+        WHERE P.DNI = vDNI AND P.Clave = vClave;
 
 END$$
 

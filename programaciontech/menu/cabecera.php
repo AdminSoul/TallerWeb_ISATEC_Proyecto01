@@ -26,6 +26,12 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Contactame</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="login.php">Administrativo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="cliente">Cliente</a>
+                    </li>
                 </ul>
             </div>
         </div>
