@@ -2,7 +2,7 @@
 $respuesta = array("code" => 500, "message" => "Error de servidor.");
 session_start();
 
-if(isset($_SESSION["Login"]) && isset($_POST["cat"]) ){
+if(isset($_SESSION["ClientLog"]) && isset($_POST["cat"]) ){
 
     include_once __DIR__ . "/../../class/producto.class.php";
 

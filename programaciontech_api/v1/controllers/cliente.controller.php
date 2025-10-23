@@ -34,7 +34,6 @@ class Cliente {
         return $devolver;
     }
 
-
     public static function Modificar($id, $dni, $nombres, $paterno, $materno, $direccion, $celular, $correo){
         try{
             $devolver = array("status" => "error", "code" => 500, "message" => "Error del servidor.");
@@ -51,9 +50,13 @@ class Cliente {
             $stm->bindParam(":celular", $celular);
             $stm->bindParam(":correo", $correo);
             $stm->execute();
+            $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-            $devolver = array("status" => "success", "code" => 200);
-
+            if(count($resultado) > 0){
+                $devolver = array("status" => "success", "code" => 200, "data" => $resultado[0]);
+            } else {
+                $devolver = array("status" => "success", "code" => 400, "message" => "Algo salió vuelva a recargar la página.");
+            }
         } catch(Exception $e) {
             $devolver = array("status" => "error", "code" => 400, "message" => $e->getMessage());
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2025 a las 01:03:10
+-- Tiempo de generación: 24-10-2025 a las 01:07:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -77,7 +77,7 @@ END$$
 DROP PROCEDURE IF EXISTS `Cliente_IniciarSesion`$$
 CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Cliente_IniciarSesion` (IN `vDNI` CHAR(8), IN `vClave` VARCHAR(20))   BEGIN
 
-	SELECT P.IdPersona, P.DNI, P.Persona
+	SELECT P.IdPersona, P.DNI, P.Nombres, P.ApPaterno, P.ApMaterno, P.Persona, P.Celular, P.Correo, P.Direccion
         FROM persona P
             JOIN cliente C ON P.IdPersona = C.IdCliente
         WHERE P.DNI = vDNI AND P.Clave = vClave;
@@ -104,6 +104,10 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Cliente_Modificar` (IN `vIdCliente`
         WHERE IdCliente = vIdCliente;
      
     COMMIT;
+    
+    SELECT IdPersona, DNI, Nombres, ApPaterno, ApMaterno, Persona, Celular, Correo, Direccion
+        FROM persona P
+    WHERE P.IdPersona = vIdCliente;
 
 END$$
 
@@ -502,7 +506,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`IdCliente`, `FechaCreado`, `FechaActualizado`) VALUES
-(2, '2025-04-14 22:32:39', '2025-05-23 14:59:52'),
+(2, '2025-04-14 22:32:39', '2025-10-23 13:07:25'),
 (3, '2025-04-16 15:09:32', '2025-05-23 15:00:10'),
 (5, '2025-05-19 15:55:15', '2025-05-19 15:55:15'),
 (6, '2025-05-19 16:42:34', '2025-05-19 16:42:34'),
@@ -545,7 +549,7 @@ CREATE TABLE `contador` (
 --
 
 INSERT INTO `contador` (`Boleta`, `Factura`) VALUES
-(3, 7);
+(4, 7);
 
 -- --------------------------------------------------------
 
@@ -613,7 +617,7 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`IdPersona`, `DNI`, `Nombres`, `ApPaterno`, `ApMaterno`, `Direccion`, `Celular`, `Correo`, `Clave`) VALUES
 (1, '00000000', 'Administrador', '', '', '', '', '', '123456'),
-(2, '71499529', 'Francisco', 'Alván', 'Bazan', '', '979002678', 'fran_oa@hotmail.com', '123456'),
+(2, '71499529', 'Francisco', 'Alvan', 'Bazan', '', '987654321', 'correo@ejemplo.com', '123456'),
 (3, '76356178', 'Carlos', 'Huaman', 'Fernandez', 'Calle Piura 623', '936921669', '76356178@isatec.net', 'b60c65551a'),
 (4, '75312703', 'Nathaly', 'Huayama', 'Hoyos', 'Calle Lambayeque 512', '987654321', '75312703@isatec.net', '52e4966920'),
 (5, '75712713', 'Nathaly', 'Huayama', 'Hoyos', 'Av. Los proceres 258', '987654321', '75712713@isatec.net', '9083c67634'),
@@ -645,11 +649,11 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`IdProducto`, `Nombre`, `IdCategoria`, `IdMarca`, `Precio`, `Stock`, `Img`, `Vigencia`) VALUES
 (1, 'Laptop 14 Ploma', 2, 2, 1800.00, 1, '1759522345.png', 1),
 (2, 'Refrigeradora 280 Lt.', 3, 1, 2800.00, 0, '', 1),
-(3, 'Galaxy S25 Ultra', 3, 2, 4500.00, 3, '1757631256.jpg', 1),
+(3, 'Galaxy S25 Ultra', 3, 2, 4500.00, 2, '1757631256.jpg', 1),
 (4, 'Galxy S24 Ultra', 3, 2, 4500.00, 0, '', 1),
 (7, 'Iphone 16 Pro Max', 3, 1, 5890.00, 0, '', 1),
 (8, 'Play Doo Odontólogo', 1, 1, 25.00, 0, '', 1),
-(9, 'iPhone 17 Prox max', 3, 1, 6300.00, 2, '1757629511.jpg', 1);
+(9, 'iPhone 17 Prox max', 3, 1, 6300.00, 1, '1757629511.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -750,7 +754,8 @@ INSERT INTO `venta` (`IdVenta`, `FechaHora`, `IdTrabajador`, `IdCliente`, `Docum
 (7, '2025-05-14 21:28:01', 1, 2, '20184861217', 'F', '001', '00000005', 6400.00, 'CO', 1, '2025-05-14 21:28:01'),
 (8, '2025-10-03 14:37:22', 1, 1, '12345678901', 'F', '001', '00000006', 19100.00, 'CO', 1, '2025-10-03 14:37:22'),
 (9, '2025-10-03 14:39:07', 1, 1, '00000000', 'B', '001', '00000003', 19100.00, 'CO', 1, '2025-10-03 14:39:07'),
-(10, '2025-10-03 14:41:20', 1, 1, '12345678901', 'F', '001', '00000007', 268050.00, 'CO', 1, '2025-10-03 14:41:20');
+(10, '2025-10-03 14:41:20', 1, 1, '12345678901', 'F', '001', '00000007', 268050.00, 'CO', 1, '2025-10-03 14:41:20'),
+(11, '2025-10-23 17:02:03', 1, 2, '71499529', 'B', '001', '00000004', 10800.00, 'CO', 1, '2025-10-23 17:02:03');
 
 -- --------------------------------------------------------
 
@@ -788,7 +793,9 @@ INSERT INTO `ventadetalle` (`IdVenta`, `IdProducto`, `Cantidad`, `Precio`) VALUE
 (10, 4, 10, 4500.00),
 (10, 7, 10, 5890.00),
 (10, 8, 10, 25.00),
-(10, 9, 11, 6300.00);
+(10, 9, 11, 6300.00),
+(11, 3, 1, 4500.00),
+(11, 9, 1, 6300.00);
 
 --
 -- Índices para tablas volcadas
@@ -928,7 +935,7 @@ ALTER TABLE `tipopago`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `IdVenta` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `IdVenta` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
