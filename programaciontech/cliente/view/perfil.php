@@ -23,7 +23,7 @@
             <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                 <div class="row mt-3">
                     <div class="col-12 col-md-4">
-                         <div class="form-floating mb-3">
+                        <div class="form-floating mb-3">
                             <input type="tel" class="form-control" id="txtDNI" placeholder="12345678" value="<?php echo $_SESSION["ClientLog"]["DNI"]; ?>">
                             <label for="txtDNI">D.N.I.</label>
                         </div>

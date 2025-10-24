@@ -9,6 +9,13 @@ $funcion = $_REQUEST["funcion"];
 $resultado = $funcion();
 echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
 
+function cambioclave(){
+    extract($_REQUEST);
+    $rn = new Cliente();
+    $datos = $rn->CambioClave($idcliente, $claveold, $clavenew);
+    return $datos;
+}
+
 function iniciarsesion(){
     extract($_REQUEST);
     $rn = new Cliente();

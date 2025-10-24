@@ -4,6 +4,32 @@ require_once "../config/conexion.php";
 
 class Cliente {
 
+    public static function CambioClave($idcliente, $claveold, $clavenew){
+        try{
+            $devolver = array("status" => "error", "code" => 500, "message" => "Error del servidor.");
+            $con = Conexion::getConexion();
+
+            $sql = "CALL Cliente_CambioClave(:idcliente, :claveold, :clavenew)";
+            $stm = $con->prepare($sql);
+            $stm->bindParam(":idcliente", $idcliente);
+            $stm->bindParam(":claveold", $claveold);
+            $stm->bindParam(":clavenew", $clavenew);
+            $stm->execute();
+
+            $devolver = array("status" => "success", "code" => 200);
+
+        } catch(Exception $e) {
+            $devolver = array("status" => "error", "code" => 400, "message" => $e->getMessage());
+
+        } finally{
+            if(isset($con) && $con != null){
+                $con = null;
+            }
+        }
+
+        return $devolver;
+    }
+
     public static function IniciarSesion($usuario, $clave){
         try{
             $devolver = array("status" => "error", "code" => 500, "message" => "Error del servidor.");

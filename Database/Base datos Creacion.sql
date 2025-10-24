@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2025 a las 01:07:58
+-- Tiempo de generación: 25-10-2025 a las 01:33:34
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -61,6 +61,20 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Cliente_Buscar` (IN `vBuscar` VARCH
         WHERE P.DNI LIKE CONCAT('%', vBuscar ,'%') OR P.Persona LIKE CONCAT('%', vBuscar ,'%')
         	ORDER BY P.ApPaterno, P.ApMaterno, P.Nombres 
          LIMIT 10;
+
+END$$
+
+DROP PROCEDURE IF EXISTS `Cliente_CambioClave`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Cliente_CambioClave` (IN `vIdCliente` BIGINT, IN `vClaveOld` VARCHAR(20), IN `vClaveNew` VARCHAR(20))   BEGIN
+
+	IF EXISTS(SELECT * FROM persona WHERE IdPersona = vIdCliente AND Clave = vClaveOld) THEN
+    	UPDATE persona
+        	SET Clave = vClaveNew
+        WHERE IdPersona = vIdCliente;
+    ELSE
+    	SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'La contraseña actual no es correcta, por favor verificar e ingresar nuevamente.';
+    END IF;
 
 END$$
 
@@ -506,7 +520,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`IdCliente`, `FechaCreado`, `FechaActualizado`) VALUES
-(2, '2025-04-14 22:32:39', '2025-10-23 13:07:25'),
+(2, '2025-04-14 22:32:39', '2025-10-24 09:11:31'),
 (3, '2025-04-16 15:09:32', '2025-05-23 15:00:10'),
 (5, '2025-05-19 15:55:15', '2025-05-19 15:55:15'),
 (6, '2025-05-19 16:42:34', '2025-05-19 16:42:34'),
@@ -617,7 +631,7 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`IdPersona`, `DNI`, `Nombres`, `ApPaterno`, `ApMaterno`, `Direccion`, `Celular`, `Correo`, `Clave`) VALUES
 (1, '00000000', 'Administrador', '', '', '', '', '', '123456'),
-(2, '71499529', 'Francisco', 'Alvan', 'Bazan', '', '987654321', 'correo@ejemplo.com', '123456'),
+(2, '71499529', 'Francisco', 'Alvan', 'Bazan', '', '987654321', 'correo@ejemplo.com', '654321'),
 (3, '76356178', 'Carlos', 'Huaman', 'Fernandez', 'Calle Piura 623', '936921669', '76356178@isatec.net', 'b60c65551a'),
 (4, '75312703', 'Nathaly', 'Huayama', 'Hoyos', 'Calle Lambayeque 512', '987654321', '75312703@isatec.net', '52e4966920'),
 (5, '75712713', 'Nathaly', 'Huayama', 'Hoyos', 'Av. Los proceres 258', '987654321', '75712713@isatec.net', '9083c67634'),

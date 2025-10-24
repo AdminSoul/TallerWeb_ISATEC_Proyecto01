@@ -31,7 +31,7 @@ if (isset($_SESSION["ClientLog"]) && isset($_POST["d"]) && isset($_POST["n"]) &&
         );
 
         if ($lst["code"] == 200) {
-            $_SESSION["ClienteLog"] = $lst["data"];
+            $_SESSION["ClientLog"] = $lst["data"];
             $respuesta = array("code" => 200);
         } else {
             $respuesta = array("code" => $lst["code"], "message" => $lst["message"]);
