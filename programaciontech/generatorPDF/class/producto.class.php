@@ -1,0 +1,16 @@
+<?php
+
+include_once __DIR__ . "/../../config/conexion.php";
+
+class Producto {
+
+    const EndPoint = "producto.php";
+
+    public static function IdCategoria($idcategoria){
+        $datos = array("funcion" => "idcategoria", "idcategoria" => $idcategoria);
+        return Api::getDatos(self::EndPoint, $datos);
+    }
+
+}
+
+?>
