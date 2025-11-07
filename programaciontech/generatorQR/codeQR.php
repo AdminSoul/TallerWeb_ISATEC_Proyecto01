@@ -9,8 +9,8 @@ use Endroid\QrCode\ErrorCorrectionLevel; // para el nivel correción del QR
 use Endroid\QrCode\RoundBlockSizeMode; // Darle margen o diseño, tamaño o modelo al QR
 use Endroid\QrCode\Writer\PngWriter; // Para ponerle imagen sobre el QR
 
-if ($_SERVER["REQUEST_METHOD"] === "POST"){
-    $mensaje = $_POST["msn"];
+if ($_SERVER["REQUEST_METHOD"] === "GET"){
+    $mensaje = $_GET["msn"];
 
     $builder = new Builder(
         writer: new PngWriter(),
