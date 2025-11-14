@@ -9,6 +9,13 @@ $funcion = $_REQUEST["funcion"];
 $resultado = $funcion();
 echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
 
+function reporte(){
+    extract($_REQUEST);
+    $rn = new Venta();
+    $datos = $rn->Reporte();
+    return $datos;
+}
+
 function nuevo(){
     extract($_REQUEST);
     $rn = new Venta();

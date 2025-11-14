@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2025 a las 01:33:34
+-- Tiempo de generación: 14-11-2025 a las 21:40:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -468,6 +468,16 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `Venta_Nuevo` (IN `vIdTrabajador` BI
         
 END$$
 
+DROP PROCEDURE IF EXISTS `Venta_ReporteExcel`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Venta_ReporteExcel` ()   BEGIN
+
+	SELECT P.Nombre AS Producto, V.Cantidad, V.Precio, V.IGV, V.Total
+        FROM ventadetalle V
+        	JOIN producto P ON V.IdProducto = P.IdProducto
+        ORDER BY V.IdVenta;
+
+END$$
+
 --
 -- Funciones
 --
@@ -662,11 +672,11 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`IdProducto`, `Nombre`, `IdCategoria`, `IdMarca`, `Precio`, `Stock`, `Img`, `Vigencia`) VALUES
 (1, 'Laptop 14 Ploma', 2, 2, 1800.00, 1, '1759522345.png', 1),
-(2, 'Refrigeradora 280 Lt.', 3, 1, 2800.00, 0, '', 1),
+(2, 'Refrigeradora 280 Lt.', 3, 1, 2800.00, 5, '', 1),
 (3, 'Galaxy S25 Ultra', 3, 2, 4500.00, 2, '1757631256.jpg', 1),
-(4, 'Galxy S24 Ultra', 3, 2, 4500.00, 0, '', 1),
-(7, 'Iphone 16 Pro Max', 3, 1, 5890.00, 0, '', 1),
-(8, 'Play Doo Odontólogo', 1, 1, 25.00, 0, '', 1),
+(4, 'Galxy S24 Ultra', 3, 2, 4500.00, 3, '', 1),
+(7, 'Iphone 16 Pro Max', 3, 1, 5890.00, 7, '', 1),
+(8, 'Play Doo Odontólogo', 1, 1, 25.00, 2, '', 1),
 (9, 'iPhone 17 Prox max', 3, 1, 6300.00, 1, '1757629511.jpg', 1);
 
 -- --------------------------------------------------------
