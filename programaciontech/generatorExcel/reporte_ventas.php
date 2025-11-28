@@ -75,6 +75,16 @@ if($lst["code"] == 200){
     ]);
 }
 
+$spreadsheet->addSheet(new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, "Hoja 2"));
+$spreadsheet->setActiveSheetIndex(1);
+$sheet = $spreadsheet->getActiveSheet();
+$sheet->setCellValue("A1", "PRUEBA");
+
+$spreadsheet->addSheet(new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, "Hoja 3"));
+$spreadsheet->setActiveSheetIndex(2);
+$sheet = $spreadsheet->getActiveSheet();
+$sheet->setCellValue("A1", "PRUEBA");
+
 $write = new Xlsx($spreadsheet);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
